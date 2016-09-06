@@ -23,7 +23,7 @@ options = {
   tracking_frame = "base_footprint",
   provide_odom_frame = true,
   expect_odometry_data = true,
-  publish_occupancy_grid = false,
+  publish_occupancy_grid = true,
   laser_min_range = 0.,
   laser_max_range = 5.,
   laser_missing_echo_ray_length = 5.,
@@ -40,6 +40,6 @@ options.trajectory_builder.real_time_correlative_scan_matcher.translation_delta_
 options.trajectory_builder.ceres_scan_matcher.occupied_space_cost_functor_weight = 40
 options.trajectory_builder.ceres_scan_matcher.previous_pose_translation_delta_cost_functor_weight = 0.1
 options.trajectory_builder.ceres_scan_matcher.initial_pose_estimate_rotation_delta_cost_functor_weight = 50
-
+options.trajectory_builder.pose_tracker.position_model_variance = 0.008
 
 return options
