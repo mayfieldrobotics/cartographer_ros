@@ -35,6 +35,8 @@ options = {
 
 options.trajectory_builder.expect_imu_data = false
 options.trajectory_builder.use_online_correlative_scan_matching = true
+options.trajectory_builder.real_time_correlative_scan_matcher.linear_search_window = 0.05
+options.trajectory_builder.real_time_correlative_scan_matcher.translation_delta_cost_weight = .5
 options.trajectory_builder.ceres_scan_matcher.occupied_space_cost_functor_weight = 40
 options.trajectory_builder.ceres_scan_matcher.previous_pose_translation_delta_cost_functor_weight = 0.1
 options.trajectory_builder.ceres_scan_matcher.initial_pose_estimate_rotation_delta_cost_functor_weight = 50
