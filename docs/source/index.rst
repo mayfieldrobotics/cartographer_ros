@@ -20,9 +20,12 @@ Cartographer ROS Integration
    :maxdepth: 2
    :hidden:
 
+   configuration
+   ros_api
+
 `Cartographer`_ is a system that provides real-time simultaneous localization
-and mapping `SLAM`_ across multiple platforms and sensor configurations. This
-project provides Cartographer's ROS integration.
+and mapping (`SLAM`_) in 2D and 3D across multiple platforms and sensor
+configurations. This project provides Cartographer's ROS integration.
 
 .. _Cartographer: https://github.com/googlecartographer/cartographer
 .. _SLAM: https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping
@@ -47,11 +50,11 @@ using `Ninja <https://ninja-build.org>`_.
     # Create a new workspace in 'catkin_ws'.
     mkdir catkin_ws
     cd catkin_ws
-    wstool init
+    wstool init src
 
-    # Merge the cartographer_ros rosinstall file and fetch code for dependencies.
-    wstool merge https://raw.githubusercontent.com/googlecartographer/cartographer_ros/master/cartographer_ros.rosinstall
-    wstool update
+    # Merge the cartographer_ros.rosinstall file and fetch code for dependencies.
+    wstool merge -t src https://raw.githubusercontent.com/googlecartographer/cartographer_ros/master/cartographer_ros.rosinstall
+    wstool update -t src
 
     # Install deb dependencies.
     rosdep update
@@ -65,13 +68,35 @@ Running the demo
 ================
 
 Now that Cartographer and Cartographer's ROS integration are installed,
-download the example bag, a 2D backpack collection of the `Deutsches Museum
-<https://en.wikipedia.org/wiki/Deutsches_Museum>`_, to a known location, in
-this case ``~/Downloads``, and use ``roslaunch`` to bring up the demo:
+download the example bags (e.g. 2D and 3D backpack collections of the
+`Deutsches Museum <https://en.wikipedia.org/wiki/Deutsches_Museum>`_) to a
+known location, in this case ``~/Downloads``, and use ``roslaunch`` to bring up
+the demo:
 
   .. code-block:: bash
 
+    # Download the 2D backpack example bag.
     wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/backpack_2d/cartographer_paper_deutsches_museum.bag
-    roslaunch cartographer_ros demo_2d.launch bag_filename:=${HOME}/Downloads/cartographer_paper_deutsches_museum.bag
 
-The launch file will bring up ``roscore`` and ``rviz`` automatically.
+    # Launch the 2D backpack demo.
+    roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:=${HOME}/Downloads/cartographer_paper_deutsches_museum.bag
+
+    # Download the 3D backpack example bag.
+    wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/backpack_3d/cartographer_3d_deutsches_museum.bag
+
+    # Launch the 3D backpack demo.
+    roslaunch cartographer_ros demo_backpack_3d.launch bag_filename:=${HOME}/Downloads/cartographer_3d_deutsches_museum.bag
+
+    # Download the Revo LDS example bag.
+    wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/revo_lds/cartographer_paper_revo_lds.bag
+
+    # Launch the Revo LDS demo.
+    roslaunch cartographer_ros demo_revo_lds.launch bag_filename:=${HOME}/Downloads/cartographer_paper_revo_lds.bag
+
+    # Download the PR2 example bag.
+    wget -P ~/Downloads https://storage.googleapis.com/cartographer-public-data/bags/pr2/2011-09-15-08-32-46.bag
+
+    # Launch the PR2 demo.
+    roslaunch cartographer_ros demo_pr2.launch bag_filename:=${HOME}/Downloads/2011-09-15-08-32-46.bag
+
+The launch files will bring up ``roscore`` and ``rviz`` automatically.

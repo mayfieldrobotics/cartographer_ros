@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-#ifndef CARTOGRAPHER_ROS_GOOGLE_CARTOGRAPHER_SRC_NODE_CONSTANTS_H_
-#define CARTOGRAPHER_ROS_GOOGLE_CARTOGRAPHER_SRC_NODE_CONSTANTS_H_
+#ifndef CARTOGRAPHER_ROS_OCCUPANCY_GRID_H_
+#define CARTOGRAPHER_ROS_OCCUPANCY_GRID_H_
+
+#include <vector>
+
+#include "cartographer/mapping/trajectory_node.h"
+#include "nav_msgs/OccupancyGrid.h"
+#include "node_options.h"
 
 namespace cartographer_ros {
 
-// The topic that the node will subscribe to.
-constexpr char kSubmapListTopic[] = "submap_list";
-
-// The service we serve in the Node and query in the RViz plugin for submap
-// which are used for visualization.
-constexpr char kSubmapQueryServiceName[] = "submap_query";
+void BuildOccupancyGrid(
+    const std::vector<::cartographer::mapping::TrajectoryNode>&
+        trajectory_nodes,
+    const NodeOptions& options, ::nav_msgs::OccupancyGrid* occupancy_grid);
 
 }  // namespace cartographer_ros
 
-#endif  // CARTOGRAPHER_ROS_GOOGLE_CARTOGRAPHER_SRC_NODE_CONSTANTS_H_
+#endif  // CARTOGRAPHER_ROS_OCCUPANCY_GRID_H_

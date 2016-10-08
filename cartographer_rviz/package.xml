@@ -16,10 +16,12 @@
 -->
 
 <package format="2">
-  <name>cartographer_ros_msgs</name>
+  <name>cartographer_rviz</name>
   <version>1.0.0</version>
   <description>
-    ROS messages for the cartographer_ros package.
+    Cartographer is a system that provides real-time simultaneous localization
+    and mapping (SLAM) in 2D and 3D across multiple platforms and sensor
+    configurations. This package provides Cartographer's RViz integration.
   </description>
   <maintainer email="google-cartographer@googlegroups.com">
     The Cartographer Authors
@@ -30,5 +32,22 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>message_generation</build_depend>
+  <build_depend>g++-static</build_depend>
+
+  <depend>cartographer</depend>
+  <depend>cartographer_ros_msgs</depend>
+
+  <depend>eigen_conversions</depend>
+  <depend>libqt5-core</depend>
+  <depend>libqt5-gui</depend>
+  <depend>libqt5-widgets</depend>
+  <depend>message_runtime</depend>
+  <depend>qtbase5-dev</depend>
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>rviz</depend>
+
+  <export>
+      <rviz plugin="${prefix}/rviz_plugin_description.xml" />
+  </export>
 </package>
